@@ -7,9 +7,11 @@
         "no-unused-expression": true
     },
     "rules": {
+        "trailing-comma": false,
+        "semicolon": false,
         "eofline": false,
         "quotemark": [
-            true,
+            false,
             "single"
         ],
         "indent": false,
