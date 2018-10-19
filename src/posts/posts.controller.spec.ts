@@ -19,7 +19,7 @@ describe('Posts Controller', () => {
                 {
                     provide: getModelToken('Post'),
                     useValue: {},
-                  },
+                },
             ]
         }).compile();
 
@@ -38,6 +38,20 @@ describe('Posts Controller', () => {
         jest.spyOn(postsService, 'create').mockImplementation(() => mockedPost);
 
         const post = await postsController.create({ content: "asdas" });
+
+        expect(post).toBe(mockedPost);
+    });
+
+    it('should get a specific post', async () => {
+        // mock postsService.findOne()
+        const mockedPost = new Post("test");
+        jest.spyOn(postsService, 'findOne').mockImplementation((postId) => {
+            if (postId === "1") {
+                return mockedPost;
+            }
+        });
+
+        const post = await postsController.findOne("1");
 
         expect(post).toBe(mockedPost);
     });
